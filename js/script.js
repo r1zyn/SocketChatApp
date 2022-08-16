@@ -105,7 +105,7 @@ function appendMessage(message, fileOptions) {
     messageElement.style.justifyContent = "flex-start";
     messageElement.style.alignItems = "flex-start";
 
-    messageElement.innerText = message;
+    messageElement.innerHTML = message;
 
     if (urlRegex.test(messageElement.innerHTML)) {
         const hyperlink = document.createElement("a");
