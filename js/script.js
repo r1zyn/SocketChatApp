@@ -1,4 +1,4 @@
-const socket = io("https://socketchat.vercel.app:3000");
+const socket = io(process.env.SOCKET_URL);
 const messageContainer = document.getElementById("message-container");
 const messageForm = document.getElementById("send-container");
 const messageInput = document.getElementById("message-input");

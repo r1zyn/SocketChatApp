@@ -1,6 +1,6 @@
 const io = require("socket.io")(3000, {
     cors: {
-        origin: "https://socketchat.vercel.app",
+        origin: process.env.ORIGIN_URL,
         methods: ["GET", "POST", "PUT", "PATCH", "DELETE"]
     }
 });
