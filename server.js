@@ -1,11 +1,17 @@
-const io = require("socket.io")(3000, {
+const express = require("express");
+const socketio = require("socket.io");
+const http = require("http");
+
+const app = express();
+const server = http.createServer(app);
+const io = socketio(server, {
     cors: {
         origin: "https://socketchat-app.vercel.app",
         methods: ["GET", "POST", "PUT", "PATCH", "DELETE"]
     }
 });
 
-console.log("Server started");
+server.listen(3000, () => console.log("Server started"));
 
 const users = {};
 
