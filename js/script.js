@@ -105,22 +105,19 @@ function appendMessage(message, fileOptions) {
     messageElement.style.justifyContent = "flex-start";
     messageElement.style.alignItems = "flex-start";
 
-    if (message.match(urlRegex)) {
+    messageElement.innerText = message;
+
+    if (urlRegex.test(messageElement.innerHTML)) {
         const hyperlink = document.createElement("a");
-        hyperlink.href = message.slice(4), hyperlink.innerText = message.replaceAll(/^\[\d+(\:\d{2}){2}\s(AM|PM)\]\s(You:)\s$/g, ""), hyperlink.target = "_blank";
-        if (fileOptions) {
-            messageElement.innerHTML = `[${new Date().toLocaleTimeString()}] You: ${hyperlink.outerHTML}
-            ${fileOptions.file.outerHTML}
-            `;
-        } else messageElement.innerHTML = `[${new Date().toLocaleTimeString()}] You: ${hyperlink.outerHTML}`;
-    } else {
-        if (fileOptions) {
-            messageElement.innerHTML = `${message}
-            ${fileOptions.file.outerHTML}
-            `;
-        } else {
-            messageElement.innerText = message;
-        }
+        hyperlink.href = message.replaceAll(/^\[\d+(\:\d{2}){2}\s(AM|PM)\]\s(You:)\s$/g, ""), hyperlink.innerText = message.replaceAll(/^\[\d+(\:\d{2}){2}\s(AM|PM)\]\s(You:)\s$/g, ""), hyperlink.target = "_blank";
+        messageElement.innerHTML.replaceAll(urlRegex, hyperlink.outerHTML);
+    }
+
+
+    if (fileOptions) {
+        messageElement.innerHTML = `${messageElement.innerHTML}
+        ${fileOptions.file.outerHTML}
+        `;
     }
 
     messageContainer.appendChild(messageElement);
