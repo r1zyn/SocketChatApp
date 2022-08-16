@@ -1,4 +1,4 @@
-const socket = io("https://socketchatapp.midnightdevelop.repl.co:3000");
+const socket = io("https://socketchatapp.midnightdevelop.repl.co");
 const messageContainer = document.getElementById("message-container");
 const messageForm = document.getElementById("send-container");
 const messageInput = document.getElementById("message-input");
