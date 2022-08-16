@@ -107,7 +107,7 @@ function appendMessage(message, fileOptions) {
 
     if (message.match(urlRegex)) {
         const hyperlink = document.createElement("a");
-        hyperlink.href = message.slice(4), hyperlink.innerText = message.slice(4), hyperlink.target = "_blank";
+        hyperlink.href = message.slice(4), hyperlink.innerText = message.replace(/^\[\d+(\:\d{2}){2}\s(AM|PM)\]\s(You:)$/g, ""), hyperlink.target = "_blank";
         if (fileOptions) {
             messageElement.innerHTML = `[${new Date().toLocaleTimeString()}] You: ${hyperlink.outerHTML}
             ${fileOptions.file.outerHTML}
