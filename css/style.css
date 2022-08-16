@@ -1,0 +1,55 @@
+::root {
+    --saturation-factor: 1;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#info-message {
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+#message-container {
+    width: 80%;
+    max-width: 1200px;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+#message-container > div {
+    background-color: #FFF;
+    padding: 5px;
+}
+
+#message-container div:hover {
+    background-color: #CCC;
+}
+
+#send-container {
+    position: fixed;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    bottom: 0;
+    max-width: 1200px;
+    width: 100%;
+    background-color: #FFF;
+    display: flex;
+}
+
+#message-input {
+    flex-grow: 1;
+}
+
+input:focus {
+    outline: none;
+}

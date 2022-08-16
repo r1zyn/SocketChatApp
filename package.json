@@ -1,0 +1,17 @@
+{
+    "name": "socketchatapp",
+    "version": "1.0.0",
+    "description": "Real time chat application made with socket.io",
+    "main": "server.js",
+    "private": false,
+    "scripts": {
+        "dev": "nodemon",
+        "start": "node ."
+    },
+    "dependencies": {
+        "socket.io": "^4.5.1"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.19"
+    }
+}
