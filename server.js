@@ -5,6 +5,8 @@ const io = require("socket.io")(3000, {
     }
 });
 
+console.log("Server started");
+
 const users = {};
 
 io.on("connection", socket => {
