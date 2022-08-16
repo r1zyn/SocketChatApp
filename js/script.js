@@ -1,4 +1,8 @@
-const socket = io("https://socketchatapp.midnightdevelop.repl.co");
+const socket = io("https://socketchatapp.midnightdevelop.repl.co", {
+    extraHeaders: {
+        "Access-Control-Allow-Origin": "*"
+    }
+});
 const messageContainer = document.getElementById("message-container");
 const messageForm = document.getElementById("send-container");
 const messageInput = document.getElementById("message-input");
