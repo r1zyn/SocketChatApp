@@ -6,12 +6,12 @@ const fileUploader = document.getElementById("file-uploader");
 
 let _name = prompt("What is your name? (If blank, name will be displayed as \"Anonymous User\")") || "Anonymous User";
 
-socket.on("users-sent", (users) => {
-    const anonymousUsers = Object.values(users).filter((username) => username.startsWith("Anonymous User #")).length;
-    _name = `Anonymous User #${anonymousUsers + 1}`;
-});
-
 if (_name === "Anonymous User") {
+    socket.on("users-sent", (users) => {
+        const anonymousUsers = Object.values(users).filter((username) => username.startsWith("Anonymous User #")).length;
+        _name = `Anonymous User #${anonymousUsers + 1}`;
+    });
+
     socket.emit("send-users");
 }
 
