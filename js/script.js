@@ -1,14 +1,33 @@
 const socket = io("https://socketchatapp.midnightdevelop.repl.co");
+const chatContainer = document.getElementById("chat-container");
 const messageContainer = document.getElementById("message-container");
 const messageForm = document.getElementById("send-container");
 const messageInput = document.getElementById("message-input");
 const fileUploader = document.getElementById("file-uploader");
+const loginForm = document.getElementById("login");
+const passwordInput = document.getElementById("password-input");
 
-let _name = prompt("What is your name? (If blank, name will be displayed as \"Anonymous User\")") || "Anonymous User";
-if (_name === "Anonymous User") socket.emit("send-users");
+let authenticated = false;
 
-appendMessage(`[${new Date().toLocaleTimeString()}] You joined the chat as ${_name}`);
-socket.emit("new-user", _name);
+loginForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    if (passwordInput.value !== process.env.PASSWORD) {
+        alert("Invalid password provided");
+    } else {
+        authenticated = true;
+        chatContainer.style.display = "block";
+        loginForm.style.display = "none";
+    }
+});
+
+if (authenticated) {
+    let _name = prompt("What is your name? (If blank, name will be displayed as \"Anonymous User\")") || "Anonymous User";
+    if (_name === "Anonymous User") socket.emit("send-users");
+
+    appendMessage(`[${new Date().toLocaleTimeString()}] You joined the chat as ${_name}`);
+    socket.emit("new-user", _name);
+}
 
 onAppend(messageContainer, () => {
     window.scrollTo(0, document.body.scrollHeight);
