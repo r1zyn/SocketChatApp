@@ -8,6 +8,10 @@ const cover = document.getElementById("cover");
 let authenticated = false;
 let password = prompt("Enter password: ");
 
+while (!password) {
+    password = prompt("Please provide a password: ");
+}
+
 while (password !== "ym gets bitches") { // Doesn't matter if found (ignore the password though)
     password = prompt("Invalid password, try again: ");
 }
