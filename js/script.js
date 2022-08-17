@@ -12,6 +12,8 @@ while (password !== "ym gets bitches") { // Doesn't matter if found (ignore the 
     password = prompt("Invalid password, try again: ");
 }
 
+cover.style.display = "none";
+
 let _name = prompt("What is your name? (If blank, name will be displayed as \"Anonymous User\")") || "Anonymous User";
 if (_name === "Anonymous User") socket.emit("send-users");
 

@@ -19,6 +19,7 @@ body {
     background-color: #ffffff;
     z-index: 500;
     display: block;
+    position: absolute;
 }
 
 #info-message {
