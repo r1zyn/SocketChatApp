@@ -73,6 +73,7 @@ fileUploader.addEventListener("change", e => {
         innerText.innerText = file.name;
         uploadFile.download = file.name.replaceAll(/(\.[a-z]{3,})$/g, "");
         uploadFile.href = window.URL.createObjectURL(file);
+        uploadFile.style.width = "max-content";
         uploadContainer.appendChild(uploadFile);
 
         fileToUpload = {
