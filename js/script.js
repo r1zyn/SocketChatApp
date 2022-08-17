@@ -4,9 +4,9 @@ const messageForm = document.getElementById("send-container");
 const messageInput = document.getElementById("message-input");
 const fileUploader = document.getElementById("file-uploader");
 
-const _name = prompt("What is your name? (If blank, name will be displayed as \"Anonymous User\")", "Anonymous User");
+const _name = prompt("What is your name? (If blank, name will be displayed as \"Anonymous User\")", "Anonymous User") || "Anonymous User";
 appendMessage(`[${new Date().toLocaleTimeString()}] You joined the chat as ${_name}`);
-socket.emit("new-user", _name || "Anonymous User");
+socket.emit("new-user", _name);
 
 onAppend(messageContainer, () => {
     window.scrollTo(0, document.body.scrollHeight);
