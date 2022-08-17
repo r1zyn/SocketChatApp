@@ -4,7 +4,7 @@ const messageContainer = document.getElementById("message-container");
 const messageForm = document.getElementById("send-container");
 const messageInput = document.getElementById("message-input");
 const fileUploader = document.getElementById("file-uploader");
-const loginForm = document.getElementById("logi-form");
+const loginForm = document.getElementById("login-form");
 const passwordInput = document.getElementById("password-input");
 
 let authenticated = false;
