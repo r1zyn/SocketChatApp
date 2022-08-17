@@ -24,11 +24,11 @@ socket.on("chat-message", data => {
 });
 
 socket.on("user-connected", name => {
-    appendMessage(`[${new Date().toLocaleTimeString()}] ${name} connected`);
+    appendMessage(`[${new Date().toLocaleTimeString()}] ${name} joined the chat`);
 });
 
 socket.on("user-disconnected", name => {
-    appendMessage(`[${new Date().toLocaleTimeString()}] ${name} disconnected`);
+    appendMessage(`[${new Date().toLocaleTimeString()}] ${name} left the chat`);
 });
 
 let fileToUpload = null;
