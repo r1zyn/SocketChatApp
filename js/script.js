@@ -3,15 +3,18 @@ const messageContainer = document.getElementById("message-container");
 const messageForm = document.getElementById("send-container");
 const messageInput = document.getElementById("message-input");
 const fileUploader = document.getElementById("file-uploader");
-let anonymousUsers = 0;
 
 let _name = prompt("What is your name? (If blank, name will be displayed as \"Anonymous User\")") || "Anonymous User";
-
-if (_name.toLowerCase() === "anonymous user") {
-    anonymousUsers++;
-    console.log(anonymousUsers);
-    _name = `Anonymous User #${anonymousUsers}`;
-}
+socket.emit("send-users");
+socket.on("users-sent", (users) => {
+    if (_name.toLowerCase() === "anonymous user") {
+        Object.values(users).forEach((username, i) => {
+            if (username.toLowerCase() === "anonymous user") {
+                _name = `Anonymous User #${i}`;
+            }
+        });
+    }
+});
 
 appendMessage(`[${new Date().toLocaleTimeString()}] You joined the chat as ${_name}`);
 socket.emit("new-user", _name);
