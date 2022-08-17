@@ -9,19 +9,17 @@ const passwordInput = document.getElementById("password-input");
 
 let authenticated = false;
 
-document.addEventListener("load", () => {
-    loginForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-    
-        if (passwordInput.value !== "ym gets bitches") { // Doesn't matter if people find this anyways, and ignore the password
-            alert("Invalid password provided");
-        } else {
-            authenticated = true;
-            chatContainer.style.display = "block";
-            loginForm.style.display = "none";
-        }
-    });
-});
+loginForm.onsubmit = (e) => {
+    e.preventDefault();
+
+    if (passwordInput.value !== "ym gets bitches") { // Doesn't matter if people find this anyways, and ignore the password
+        alert("Invalid password provided");
+    } else {
+        authenticated = true;
+        chatContainer.style.display = "block";
+        loginForm.style.display = "none";
+    }
+};
 
 if (authenticated) {
     let _name = prompt("What is your name? (If blank, name will be displayed as \"Anonymous User\")") || "Anonymous User";
