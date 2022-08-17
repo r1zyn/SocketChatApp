@@ -9,6 +9,7 @@ let _name = prompt("What is your name? (If blank, name will be displayed as \"An
 
 if (_name.toLowerCase() === "anonymous user") {
     anonymousUsers++;
+    console.log(anonymousUsers);
     _name = `Anonymous User #${anonymousUsers}`;
 }
 
