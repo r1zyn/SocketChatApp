@@ -12,7 +12,7 @@ let authenticated = false;
 loginForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    if (passwordInput.value !== "ym gets bitches") { // Doesn't matter if people find this anyways
+    if (passwordInput.value !== "ym gets bitches") { // Doesn't matter if people find this anyways, and ignore the password
         alert("Invalid password provided");
     } else {
         authenticated = true;
