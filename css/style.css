@@ -20,6 +20,8 @@ body {
     z-index: 500;
     display: block;
     position: absolute;
+    top: 0;
+    left: 0;
 }
 
 #info-message {
