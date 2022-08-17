@@ -5,21 +5,18 @@ const messageInput = document.getElementById("message-input");
 const fileUploader = document.getElementById("file-uploader");
 
 let _name = prompt("What is your name? (If blank, name will be displayed as \"Anonymous User\")") || "Anonymous User";
-
-if (_name === "Anonymous User") {
-    socket.on("users-sent", (users) => {
-        const anonymousUsers = Object.values(users).filter((username) => username.startsWith("Anonymous User #")).length;
-        _name = `Anonymous User #${anonymousUsers + 1}`;
-    });
-
-    socket.emit("send-users");
-}
+if (_name === "Anonymous User") socket.emit("send-users");
 
 appendMessage(`[${new Date().toLocaleTimeString()}] You joined the chat as ${_name}`);
 socket.emit("new-user", _name);
 
 onAppend(messageContainer, () => {
     window.scrollTo(0, document.body.scrollHeight);
+});
+
+socket.on("users-sent", (users) => {
+    const anonymousUsers = Object.values(users).filter((username) => username.startsWith("Anonymous User #")).length;
+    _name = `Anonymous User #${anonymousUsers + 1}`;
 });
 
 socket.on("chat-message", data => {
@@ -102,10 +99,6 @@ messageForm.addEventListener("submit", e => {
     fileToUpload = null;
 });
 
-document.body.addEventListener("", () => {
-    window.scrollTo(0, document.body.scrollHeight);
-});
-
 /**
  * @param {string} message
  * @param {{ file: HTMLImageElement, type: "image" | "file" }} fileOptions
@@ -119,7 +112,6 @@ function appendMessage(message, fileOptions) {
     messageElement.style.alignItems = "flex-start";
     messageElement.style.flexWrap = "wrap";
     messageElement.style.columnGap = "4px";
-
     messageElement.innerHTML = message;
 
     if (urlRegex.test(messageElement.innerHTML)) {
