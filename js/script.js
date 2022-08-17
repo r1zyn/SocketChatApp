@@ -39,7 +39,7 @@ fileUploader.addEventListener("change", e => {
     if (file.type.match(/image.*/)) {
         const image = document.createElement("img");
         image.src = window.URL.createObjectURL(file);
-        image.style.maxWidth = "80%";
+        image.style.width = "100%";
 
         fileToUpload = {
             file: image,
@@ -101,18 +101,21 @@ function appendMessage(message, fileOptions) {
     const urlRegex = new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/g);
     const messageElement = document.createElement("div");
     messageElement.style.display = "flex";
-    messageElement.style.flexDirection = "column";
+    messageElement.style.flexDirection = "row";
     messageElement.style.justifyContent = "flex-start";
     messageElement.style.alignItems = "flex-start";
+    messageElement.style.flexWrap = "wrap";
+    messageElement.style.columnGap = "4px";
 
     messageElement.innerHTML = message;
 
     if (urlRegex.test(messageElement.innerHTML)) {
-        const hyperlink = document.createElement("a");
-        hyperlink.href = message.replaceAll(/^\[\d+(\:\d{2}){2}\s(AM|PM)\]\s(You:)\s$/g, ""), hyperlink.innerText = message.replaceAll(/^\[\d+(\:\d{2}){2}\s(AM|PM)\]\s(You:)\s$/g, ""), hyperlink.target = "_blank";
-        messageElement.innerHTML.replaceAll(urlRegex, hyperlink.outerHTML);
+        message.match(urlRegex).forEach((url) => {
+            const hyperlink = document.createElement("a");
+            hyperlink.href = url, hyperlink.innerText = url, hyperlink.target = "_blank", hyperlink.style.position = "inline-flex", hyperlink.style.display = "inline-block";
+            messageElement.innerHTML = messageElement.innerHTML.replace(url, hyperlink.outerHTML);
+        });
     }
-
 
     if (fileOptions) {
         messageElement.innerHTML = `${messageElement.innerHTML}
@@ -126,7 +129,7 @@ function appendMessage(message, fileOptions) {
 };
 
 function onAppend(elem, f) {
-    var observer = new MutationObserver(function(mutations) {
+    var observer = new MutationObserver(function (mutations) {
         mutations.forEach(function (m) {
             if (m.addedNodes.length) f(m.addedNodes);
         });

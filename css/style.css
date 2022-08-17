@@ -50,6 +50,19 @@ body {
     flex-grow: 1;
 }
 
-input:focus {
+#message-input:focus {
+    outline: none;
+}
+
+a {
+    text-decoration: none;
+    color: #00B8DE;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:focus {
     outline: none;
 }

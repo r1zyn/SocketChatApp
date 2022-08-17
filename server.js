@@ -6,7 +6,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketio(server, {
     cors: {
-        origin: "https://socketchat-app.vercel.app",
+        origin: "http://localhost:5500",
         methods: ["GET", "POST", "PUT", "PATCH", "DELETE"]
     }
 });
