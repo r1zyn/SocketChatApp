@@ -5,16 +5,15 @@ const messageInput = document.getElementById("message-input");
 const fileUploader = document.getElementById("file-uploader");
 const cover = document.getElementById("cover");
 
-let authenticated = false;
-let password = prompt("Enter password: ");
+// let password = prompt("Enter password: ");
 
-while (!password) {
-    password = prompt("Please provide a password: ");
-}
+// while (!password) {
+//     password = prompt("Please provide a password: ");
+// }
 
-while (password !== "ym gets bitches") { // Doesn't matter if found (ignore the password though)
-    password = prompt("Invalid password, try again: ");
-}
+// while (password !== "ym gets bitches") { // Doesn't matter if found (ignore the password though)
+//     password = prompt("Invalid password, try again: ");
+// }
 
 cover.style.display = "none";
 
@@ -156,3 +155,18 @@ function onAppend(elem, f) {
 
     observer.observe(elem, { childList: true });
 };
+
+async function saveFile(blob) {
+
+    // create a new handle
+    const newHandle = await window.showSaveFilePicker();
+
+    // create a FileSystemWritableFileStream to write to
+    const writableStream = await newHandle.createWritable();
+
+    // write our file
+    await writableStream.write(blob);
+
+    // close the file and write the contents to disk.
+    await writableStream.close();
+}
