@@ -5,16 +5,6 @@ const messageInput = document.getElementById("message-input");
 const fileUploader = document.getElementById("file-uploader");
 const cover = document.getElementById("cover");
 
-// let password = prompt("Enter password: ");
-
-// while (!password) {
-//     password = prompt("Please provide a password: ");
-// }
-
-// while (password !== "ym gets bitches") { // Doesn't matter if found (ignore the password though)
-//     password = prompt("Invalid password, try again: ");
-// }
-
 cover.style.display = "none";
 
 let _name = prompt("What is your name? (If blank, name will be displayed as \"Anonymous User\")") || "Anonymous User";
