@@ -24,10 +24,8 @@ socket.on("users-sent", (users) => {
 
 socket.on("chat-message", data => {
     const message = document.createElement("div");
-    message.innerHTML = data.message
-        .replaceAll("You", data.name)
-        .replaceAll("<div>", "")
-        .replaceAll("</div>", "");
+    message.innerText = data.message
+        .replaceAll("You", data.name);
 
     messageContainer.append(message);
 });
